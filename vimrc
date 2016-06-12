@@ -48,7 +48,7 @@ let g:syntastic_check_on_wq = 0
 " Do syntax highlighting
 syntax enable
 
-colorscheme herold
+colorscheme mark_herald
 
 " Wrap navigation
 set whichwrap+=<,>,h,l,[,]

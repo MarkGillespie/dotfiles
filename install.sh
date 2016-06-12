@@ -26,10 +26,10 @@ mv ~/.vimrc ~/dotfiles_old/vimrc
 echo "Creating symlink to .vimrc in home directory."
 ln -s $dir/vimrc ~/.vimrc
 
-echo "Moving old herold (color scheme) from ~/.vim/colors to $olddir"
-mv ~/.vim/colors/herold.vim ~/dotfiles_old/herold.vim
-echo "Creating symlink to herold.vim in ~/.vim/colors"
-ln -s $dir/herold.vim ~/.vim/colors/herold.vim
+echo "Moving old mark_herald (color scheme) from ~/.vim/colors to $olddir"
+mv ~/.vim/colors/mark_herald.vim ~/dotfiles_old/mark_herald.vim
+echo "Creating symlink to mark_herald.vim in ~/.vim/colors"
+ln -s $dir/mark_herald.vim ~/.vim/colors/mark_herald.vim
 
 echo "Moving old gitconfig from ~ to $olddir"
 mv ~/.gitconfig ~/dotfiles_old/gitconfig
