@@ -1,57 +1,86 @@
+"------ Vundle setup -----------------
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
-syntax on
-filetype plugin indent on
-set whichwrap+=<,>,h,l,[,]
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+
+Bundle 'scrooloose/syntastic'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'Raimondi/delimitMate'
+
+" All of your Plugins must be added before the following line
+call vundle#end()            " required
+filetype plugin indent on    " required
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+"------ End Vundle setup -----------
+
+"------ Syntastic settings
+
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-
-set number
-set relativenumber
-set mouse=a
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_check_haskell_ghc_mod_exec = 'ghc-mod.sh'
-let g:syntastic_haskell_ghc_mod_args = '-g -fno-warn-unused-binds -g -fno-warn-unused-matches -g -fno-wanr-unused-do-bind'
-let g:syntastic_gcc_args = "-w"
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++11 -stdlib=libc++'
 
-" REQUIRED. This makes vim invoke Latex-Suite when you open a tex file.
-filetype plugin on
+"------ End Syntastic settings
 
-" IMPORTANT: win32 users will need to have 'shellslash' set so that latex
-" can be called correctly.
-set shellslash
 
-" IMPORTANT: grep will sometimes skip displaying the file name if you
-" search in a singe file. This will confuse Latex-Suite. Set your grep
-" program to always generate a file-name.
-set grepprg=grep\ -nH\ $*
 
-" OPTIONAL: This enables automatic indentation as you type.
+" Do syntax highlighting
+syntax on
+
+" Wrap navigation
+set whichwrap+=<,>,h,l,[,]
+
+" Display line numbers
+set number
+
+" This enables automatic indentation as you type.
 filetype indent on
-
-" OPTIONAL: Starting with Vim 7, the filetype of empty .tex files defaults to
-" 'plaintex' instead of 'tex', which results in vim-latex not being loaded.
-" The following changes the default filetype back to 'tex':
-let g:tex_flavor='latex'
 
 " Shortcuts to switch between tabs
 noremap <S-h> gT
 noremap <S-l> gt
 
-highlight ColorColumn ctermbg=DarkGrey guibg=#2c2d27
+" place yanked text into the global clipboard
+" stackoverflow.com/questions/9166328/hot-to-copy-selected-lines-to-clipboard
+" -in-vim
+set clipboard=unnamedplus
 
-" Haskell Commands
+" spellchecking
+setlocal spell spelllang=en_us
+hi clear SpellBad
+hi clear SpellCap
+hi clear SpellLocal
+hi clear SpellRare
+hi Spellbad cterm=underline
+hi SpellCap cterm=underline
+hi SpellLocal cterm=underline
+hi SpellRare cterm=underline
+
+
+" Build Commands
 autocmd FileType haskell map <buffer> <C-b> :! ghc -O2 %:r && ./%:r<CR>
-autocmd FileType haskell map <buffer> <C-_> 0i--<esc> 
-autocmd FileType haskell map <buffer> <C-d> :s/^--//<CR>
 
 autocmd FileType tex map <buffer> <C-b> :! pdflatex %:r <CR>
 
@@ -59,13 +88,14 @@ autocmd FileType cpp map <buffer> <C-b> :! make && ./%:r<CR>
 
 autocmd FileType python map <buffer> <C-b> :! python %:r.py<CR>
 
-" OCaml Commands
 autocmd FileType ocaml map <buffer> <C-b> :! ocaml %:r.ml<CR>
 
-" set 80 column color
-autocmd FileType ocaml let &colorcolumn=join(range(81,999),",")
 
-"set cindent
+" set 80 column color
+highlight ColorColumn ctermbg=DarkGrey guibg=#2c2d27
+autocmd FileType ocaml let &colorcolumn=join(range(81,999),",")
+autocmd FileType c let &colorcolumn=join(range(81,999),",")
+autocmd FileType text let &colorcolumn=join(range(81,999),",")
 
 set expandtab
 set shiftwidth=2
