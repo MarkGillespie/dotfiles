@@ -26,6 +26,11 @@ mv ~/.vimrc ~/dotfiles_old/vimrc
 echo "Creating symlink to .vimrc in home directory."
 ln -s $dir/vimrc ~/.vimrc
 
+echo "Moving old gitconfig from ~ to $olddir"
+mv ~/.gitconfig ~/dotfiles_old/gitconfig
+echo "Creating symlink to .gitconfig in home directory."
+ln -s $dir/gitconfig ~/.gitconfig
+
 echo "Moving old xmonad.hs from ~/.xmonad to $olddir"
 mv ~/.xmonad/xmonad.hs ~/dotfiles_old/xmonad
 echo "Creating symlink to .xmonad/xmonad.hs in home directory"
