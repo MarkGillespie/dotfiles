@@ -45,9 +45,10 @@ let g:syntastic_check_on_wq = 0
 "------ End Syntastic settings
 
 
-
 " Do syntax highlighting
-syntax on
+syntax enable
+
+colorscheme herold
 
 " Wrap navigation
 set whichwrap+=<,>,h,l,[,]
@@ -67,16 +68,6 @@ noremap <S-l> gt
 " -in-vim
 set clipboard=unnamedplus
 
-" spellchecking
-setlocal spell spelllang=en_us
-hi clear SpellBad
-hi clear SpellCap
-hi clear SpellLocal
-hi clear SpellRare
-hi Spellbad cterm=underline
-hi SpellCap cterm=underline
-hi SpellLocal cterm=underline
-hi SpellRare cterm=underline
 
 
 " Build Commands
