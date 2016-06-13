@@ -113,9 +113,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 main = xmonad defaultConfig
               { manageHook          = manageDocks <+> manageHook defaultConfig
+              , logHook             = ewmhDesktopsLogHook
               , layoutHook          = avoidStruts  $  layoutHook defaultConfig
-              , startupHook         = ewmhDesktopsStartup >> setWMName "LG3D"
               , handleEventHook     = ewmhDesktopsEventHook
+              , startupHook         = ewmhDesktopsStartup >> setWMName "LG3D"
               , borderWidth         = 1
               , terminal            = "xfce4-terminal"
               , focusedBorderColor  = "#4f9bff"
