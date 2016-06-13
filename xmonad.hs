@@ -18,13 +18,16 @@ import System.Exit
 myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- launch a terminal
-    [ ((modMask,		xK_Return), spawn $ XMonad.terminal conf)
+    [ ((modMask,               xK_Return), spawn $ XMonad.terminal conf)
 
     -- launch dmenu
     , ((modMask,               xK_d     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
 
     -- launch xfce4-launcher
     , ((modMask,               xK_p     ), spawn "xfce4-appfinder")
+
+    -- launch chrome
+   , ((modMask .|. shiftMask,  xK_l     ), spawn "google-chrome")
 
     -- launch gmrun
     , ((modMask .|. shiftMask, xK_p     ), spawn "xfrun4")
