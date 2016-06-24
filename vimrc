@@ -83,10 +83,11 @@ autocmd FileType ocaml map <buffer> <C-b> :! ocaml %:r.ml<CR>
 
 
 " set 80 column color
-highlight ColorColumn ctermbg=DarkGrey guibg=#2c2d27
+highlight ColorColumn ctermbg=Black
 autocmd FileType ocaml let &colorcolumn=join(range(81,999),",")
 autocmd FileType c let &colorcolumn=join(range(81,999),",")
 autocmd FileType text let &colorcolumn=join(range(81,999),",")
+autocmd FileType matlab let &colorcolumn=join(range(81,999),",")
 
 set expandtab
 set shiftwidth=2
