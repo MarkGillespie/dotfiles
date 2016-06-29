@@ -157,14 +157,20 @@ myLayout = avoidStruts $
            tiled
            ||| Mirror tiled
            ||| Full
-           ||| threeCol
-           ||| spiral (4/3)
-           ||| myChat
+           {-||| threeCol-}
+           {-||| spiral (4/3)-}
+           {-||| myChat-}
  
 ------------------------------------------------------------------------
 
+-- I put this empty className hook in so that processing sketches run with
+-- P3D (which run as windows with no classname) would be allowed to float, so
+-- their size doesn't get messed up.
+myManageHook = composeAll
+  [className =? "" --> doFloat ] <+> manageDocks
+
 main = xmonad defaultConfig
-              { manageHook          = manageDocks <+> manageHook defaultConfig
+              { manageHook          = myManageHook
               , logHook             = ewmhDesktopsLogHook
               , layoutHook          = myLayout 
               {-, layoutHook          = avoidStruts $ layoutHook defaultConfig -}

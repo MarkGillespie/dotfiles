@@ -81,6 +81,8 @@ autocmd FileType python map <buffer> <C-b> :! python %:r.py<CR>
 
 autocmd FileType ocaml map <buffer> <C-b> :! ocaml %:r.ml<CR>
 
+autocmd! BufNewFile,BufRead *.pde map <buffer> <C-b> :! cd .. && /usr/lib/processing-3.1.1/processing-java --sketch=%:r --run<CR>
+
 
 " set 80 column color
 highlight ColorColumn ctermbg=Black
