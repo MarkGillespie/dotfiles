@@ -38,7 +38,7 @@ hi Title guifg=#6DF584 guibg=NONE  guisp=NONE gui=bold ctermfg=84 ctermbg=NONE c
 hi Folded guifg=#003DAD guibg=NONE guisp=#001336 gui=NONE ctermfg=25 ctermbg=NONE cterm=NONE
 hi PreCondit guifg=#BF81FA guibg=NONE guisp=NONE gui=NONE ctermfg=177 ctermbg=NONE cterm=NONE
 hi Include guifg=#BF81FA guibg=NONE guisp=NONE gui=NONE ctermfg=177 ctermbg=NONE cterm=NONE
-hi TabLineSel guifg=#D0D0D0 guibg=NONE guisp=NONE gui=bold ctermfg=252 ctermbg=NONE cterm=bold
+hi TabLineSel guifg=#FFFFFF guibg=NONE guisp=NONE gui=bold ctermfg=255 ctermbg=NONE cterm=bold
 hi StatusLineNC guifg=#696567 guibg=#25365a guisp=#25365a gui=NONE ctermfg=242 ctermbg=17 cterm=NONE
 hi NonText guifg=#FC6984 guibg=NONE guisp=NONE gui=NONE ctermfg=204 ctermbg=NONE cterm=NONE
 hi DiffText guifg=#ED9000 guibg=#12457D guisp=#12457D gui=underline ctermfg=208 ctermbg=6 cterm=underline
@@ -98,7 +98,7 @@ hi Structure guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NO
 hi Macro guifg=#BF81FA guibg=NONE guisp=NONE gui=NONE ctermfg=177 ctermbg=NONE cterm=NONE
 hi Underlined guifg=#FC4NONE guibg=NONE guisp=NONE gui=underline ctermfg=13 ctermbg=NONE cterm=underline
 hi DiffAdd guifg=#ED9000 guibg=#006124 guisp=#006124 gui=NONE ctermfg=208 ctermbg=22 cterm=NONE
-hi TabLine guifg=NONE guibg=#141414 guisp=#141414 gui=NONE ctermfg=NONE ctermbg=233 cterm=NONE
+hi TabLine guifg=NONE guibg=#141414 guisp=#141414 gui=NONE ctermfg=242 ctermbg=233 cterm=NONE
 hi cursorim guifg=NONE guibg=#FFEE68 guisp=#FFEE68 gui=NONE ctermfg=NONE ctermbg=227 cterm=NONE
 hi htmlitalic guifg=#D0D0D0 guibg=NONE guisp=NONE gui=italic ctermfg=252 ctermbg=NONE cterm=NONE
 hi htmlboldunderlineitalic guifg=#D0D0D0 guibg=NONE guisp=NONE gui=bold,italic,underline ctermfg=252 ctermbg=NONE cterm=bold,underline
