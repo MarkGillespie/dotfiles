@@ -1,16 +1,20 @@
 import XMonad
 
-import qualified XMonad.StackSet as W
-import qualified Data.Map        as M
+import Data.List
 import Data.Ratio ((%))
 
+import qualified XMonad.StackSet as W
+import qualified Data.Map        as M
+
 import XMonad.Hooks.EwmhDesktops
+import XMonad.Hooks.FadeInactive
 import XMonad.Hooks.ManageDocks
 import XMonad.Hooks.SetWMName
 
 import XMonad.Layout.Circle
 import XMonad.Layout.Grid
 import XMonad.Layout.Maximize
+import XMonad.Layout.Reflect
 import XMonad.Layout.Spiral
 import XMonad.Layout.ThreeColumns
 import XMonad.Layout.IM
@@ -33,7 +37,10 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_p     ), spawn "xfce4-appfinder")
 
     -- launch chrome
-   , ((modMask .|. shiftMask,  xK_l     ), spawn "google-chrome")
+    , ((modMask .|. shiftMask,  xK_l     ), spawn "google-chrome")
+
+    -- launch nautilus 
+    , ((modMask .|. shiftMask,  xK_t     ), spawn "nautilus")
 
     -- launch gmrun
     , ((modMask .|. shiftMask, xK_p     ), spawn "xfrun4")
@@ -155,30 +162,38 @@ myChat = myChat' $ tiled ||| spiral (4/3)
 --
 myLayout = avoidStruts $
            tiled
-           ||| Mirror tiled
+           ||| reflectHoriz tiled
+           ||| Grid
            ||| Full
            {-||| threeCol-}
            {-||| spiral (4/3)-}
            {-||| myChat-}
- 
+
+
+myLogHook :: X()
+myLogHook = fadeInactiveLogHook fadeAmount <+> ewmhDesktopsLogHook
+  where fadeAmount = 0.9
+{-myLogHook = ewmhDesktopsLogHook-}
 ------------------------------------------------------------------------
 
 -- I put this empty className hook in so that processing sketches run with
 -- P3D (which run as windows with no classname) would be allowed to float, so
 -- their size doesn't get messed up.
-myManageHook = composeAll
-  [className =? "" --> doFloat ] <+> manageDocks
+myManageHook = composeAll 
+  [ className =? "" --> doFloat 
+  , fmap ("OffScreen" `isInfixOf`) title --> doFloat ]
+  <+> manageDocks
 
 main = xmonad defaultConfig
               { manageHook          = myManageHook
-              , logHook             = ewmhDesktopsLogHook
+              , logHook             = myLogHook 
               , layoutHook          = myLayout 
               {-, layoutHook          = avoidStruts $ layoutHook defaultConfig -}
               , handleEventHook     = ewmhDesktopsEventHook
               , startupHook         = ewmhDesktopsStartup >> setWMName "LG3D"
               , borderWidth         = 1
               , terminal            = "xfce4-terminal"
-              , focusedBorderColor  = "#4f9bff"
+              , focusedBorderColor  = "#2f7bff"
               , normalBorderColor   = "#737373"
               , keys                = myKeys
               }
