@@ -15,6 +15,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Raimondi/delimitMate'
 
+Bundle 'lervag/vimtex'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -68,7 +70,8 @@ noremap <S-l> gt
 " -in-vim
 set clipboard=unnamedplus
 
-
+" Remap semicolon to colon
+nmap ; :
 
 " Build Commands
 autocmd FileType haskell map <buffer> <C-b> :! ghc -O2 %:r && ./%:r<CR>
@@ -89,8 +92,16 @@ highlight ColorColumn ctermbg=Black
 autocmd FileType ocaml let &colorcolumn=join(range(81,999),",")
 autocmd FileType c let &colorcolumn=join(range(81,999),",")
 autocmd FileType text let &colorcolumn=join(range(81,999),",")
-autocmd FileType matlab let &colorcolumn=join(range(81,999),",")
 
 set expandtab
 set shiftwidth=2
 set softtabstop=2
+
+" indent wrapped lines
+set breakindent
+
+" move navigate on wrapped lines
+noremap  <buffer> <silent> k gk
+noremap  <buffer> <silent> j gj
+noremap  <buffer> <silent> 0 g0
+noremap  <buffer> <silent> $ g$
