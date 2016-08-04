@@ -27,16 +27,21 @@ echo "Creating symlink to .vimrc in home directory."
 ln -s $dir/vimrc ~/.vimrc
 
 echo "Moving old mark_herald (color scheme) from ~/.vim/colors to $olddir"
-mv ~/.vim/colors/mark_herald.vim ~/dotfiles_old/mark_herald.vim
+mv ~/.vim/colors/mark_herald.vim $olddir/mark_herald.vim
 echo "Creating symlink to mark_herald.vim in ~/.vim/colors"
 ln -s $dir/mark_herald.vim ~/.vim/colors/mark_herald.vim
 
 echo "Moving old gitconfig from ~ to $olddir"
-mv ~/.gitconfig ~/dotfiles_old/gitconfig
+mv ~/.gitconfig $olddir/gitconfig
 echo "Creating symlink to .gitconfig in home directory."
 ln -s $dir/gitconfig ~/.gitconfig
 
 echo "Moving old xmonad.hs from ~/.xmonad to $olddir"
-mv ~/.xmonad/xmonad.hs ~/dotfiles_old/xmonad
+mv ~/.xmonad/xmonad.hs $olddir/xmonad
 echo "Creating symlink to .xmonad/xmonad.hs in home directory"
 ln -s $dir/xmonad.hs ~/.xmonad/xmonad.hs
+
+echo "Moving old compton.conf from ~/.config to $olddir"
+mv ~/.config/compton.conf $olddir/compton.conf
+echo "Creating symlink to .config/compton.conf in home directory"
+ln -s $dir/compton.conf ~/.config/compton.conf
