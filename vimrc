@@ -16,6 +16,7 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'Raimondi/delimitMate'
 
 Bundle 'lervag/vimtex'
+Bundle 'derekwyatt/vim-fswitch'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -49,6 +50,12 @@ let g:syntastic_check_on_wq = 0
 
 " Do syntax highlighting
 syntax enable
+
+" Highlight trailing whitespace
+" http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
+highlight ExtraWhitespace ctermbg=lightgreen guibg=lightgreen
+match ExtraWhitespace /\s\+$/
 
 colorscheme mark_herald
 
@@ -91,6 +98,7 @@ autocmd! BufNewFile,BufRead *.pde map <buffer> <C-b> :! cd .. && /usr/lib/proces
 highlight ColorColumn ctermbg=Black
 autocmd FileType ocaml let &colorcolumn=join(range(81,999),",")
 autocmd FileType c let &colorcolumn=join(range(81,999),",")
+autocmd FileType cpp let &colorcolumn=join(range(81,999),",")
 autocmd FileType text let &colorcolumn=join(range(81,999),",")
 
 set expandtab
@@ -105,3 +113,15 @@ noremap  <buffer> <silent> k gk
 noremap  <buffer> <silent> j gj
 noremap  <buffer> <silent> 0 g0
 noremap  <buffer> <silent> $ g$
+
+" Remove all trailing whitespace by pressing F5
+" https://vi.stackexchange.com/questions/454/whats-the-simplest-way-to-strip-trailing-whitespace-from-all-lines-in-a-file
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+nnoremap <F5> :call TrimWhitespace()<CR>
+
+" Highlight search results
+set hlsearch
