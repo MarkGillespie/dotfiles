@@ -172,7 +172,7 @@ myLayout = avoidStruts $
 
 myLogHook :: X()
 myLogHook = fadeInactiveLogHook fadeAmount <+> ewmhDesktopsLogHook
-  where fadeAmount = 0.9
+  where fadeAmount = 1.0 
 {-myLogHook = ewmhDesktopsLogHook-}
 ------------------------------------------------------------------------
 
@@ -189,7 +189,7 @@ main = xmonad defaultConfig
               , logHook             = myLogHook 
               , layoutHook          = myLayout 
               {-, layoutHook          = avoidStruts $ layoutHook defaultConfig -}
-              , handleEventHook     = ewmhDesktopsEventHook
+              , handleEventHook     = ewmhDesktopsEventHook <+> fullscreenEventHook
               , startupHook         = ewmhDesktopsStartup >> setWMName "LG3D"
               , borderWidth         = 1
               , terminal            = "xfce4-terminal"
