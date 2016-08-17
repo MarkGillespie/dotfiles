@@ -34,18 +34,18 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
     , ((modMask,               xK_d     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
 
     -- launch xfce4-launcher
-    , ((modMask,               xK_p     ), spawn "xfce4-appfinder")
+    , ((modMask,               xK_p     ), spawn "xfrun4")
 
     -- launch chrome
     , ((modMask .|. shiftMask,  xK_l     ), spawn "google-chrome")
 
-    -- launch nautilus 
+    -- launch nautilus
     , ((modMask .|. shiftMask,  xK_t     ), spawn "nautilus")
 
     -- launch gmrun
-    , ((modMask .|. shiftMask, xK_p     ), spawn "xfrun4")
+    , ((modMask .|. shiftMask, xK_p     ), spawn "xfce4-appfinder")
 
-    -- close focused window 
+    -- close focused window
     , ((modMask .|. shiftMask, xK_c     ), kill)
 
      -- Rotate through the available layout algorithms
@@ -104,7 +104,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
     -- Restart xmonad
     , ((modMask              , xK_q     ), restart "xmonad" True)
-    
+
     -- to hide/unhide the panel
     , ((modMask              , xK_b), sendMessage ToggleStruts)
     ]
@@ -129,7 +129,7 @@ myKeys conf@(XConfig {XMonad.modMask = modMask}) = M.fromList $
 
 ------------------------------------------------------------------------
 -- Layouts:
- 
+
 -- You can specify and transform your layouts by modifying these values.
 -- If you change layout bindings be sure to use 'mod-shift-space' after
 -- restarting (with 'mod-q') to reset your layout state to the new
@@ -172,22 +172,23 @@ myLayout = avoidStruts $
 
 myLogHook :: X()
 myLogHook = fadeInactiveLogHook fadeAmount <+> ewmhDesktopsLogHook
-  where fadeAmount = 1.0 
+  where fadeAmount = 1.0
 {-myLogHook = ewmhDesktopsLogHook-}
 ------------------------------------------------------------------------
 
 -- I put this empty className hook in so that processing sketches run with
 -- P3D (which run as windows with no classname) would be allowed to float, so
 -- their size doesn't get messed up.
-myManageHook = composeAll 
-  [ className =? "" --> doFloat 
+myManageHook = composeAll
+  [ className =? "" --> doFloat
+  , title =? "Application Finder" --> doFloat
   , fmap ("OffScreen" `isInfixOf`) title --> doFloat ]
   <+> manageDocks
 
 main = xmonad defaultConfig
               { manageHook          = myManageHook
-              , logHook             = myLogHook 
-              , layoutHook          = myLayout 
+              , logHook             = myLogHook
+              , layoutHook          = myLayout
               {-, layoutHook          = avoidStruts $ layoutHook defaultConfig -}
               , handleEventHook     = ewmhDesktopsEventHook <+> fullscreenEventHook
               , startupHook         = ewmhDesktopsStartup >> setWMName "LG3D"
