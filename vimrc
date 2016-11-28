@@ -1,3 +1,5 @@
+set shell=/bin/bash
+
 "------ Vundle setup -----------------
 
 set nocompatible              " be iMproved, required
@@ -17,6 +19,7 @@ Bundle 'Raimondi/delimitMate'
 
 Bundle 'lervag/vimtex'
 Bundle 'derekwyatt/vim-fswitch'
+Bundle 'powerline/powerline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -34,6 +37,17 @@ filetype plugin indent on    " required
 
 "------ End Vundle setup -----------
 
+"------ Powerline Settings -------
+set rtp+=$HOME/.vim/bundle/powerline/powerline/bindings/vim/
+
+" Always show statusline
+set laststatus=2
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+"------ End Powerline setup -----------
+"
 "------ Syntastic settings
 
 set statusline+=%#warningmsg#
