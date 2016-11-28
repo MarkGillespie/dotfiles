@@ -45,8 +45,18 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 
+" Hide some latex warnings
+" https://stackoverflow.com/questions/28282315/how-can-i-turn-off-specific-messages-in-syntastic-vim
+let g:syntastic_quiet_messages = {
+  \ 'regex':  '.*You might wish to put this between a pair.*\|You should enclose'}
+
 "------ End Syntastic settings
 
+"------ VimTeX settings -------
+" https://github.com/lervag/vimtex/issues/467
+
+let g:vimtex_latexmk_options = '-pdf -shell-escape -verbose -file-line-error -synctex=1 -interaction=nonstopmode'
+"------ End VimTeX settings
 
 " Do syntax highlighting
 syntax enable
@@ -91,6 +101,8 @@ autocmd FileType python map <buffer> <C-b> :! python %:r.py<CR>
 
 autocmd FileType ocaml map <buffer> <C-b> :! ocaml %:r.ml<CR>
 
+autocmd FileType html map <buffer> <C-b> :! ../build %:r.html  ../view_%:r.html<CR><CR>
+
 autocmd! BufNewFile,BufRead *.pde map <buffer> <C-b> :! cd .. && /usr/lib/processing-3.1.1/processing-java --sketch=%:r --run<CR>
 
 
@@ -128,3 +140,7 @@ set hlsearch
 
 " fswitch (switching to header file) mappings
 noremap  <Leader>h :FSHere <CR>
+
+" use fswitch to switch between flex and bison files
+au! BufEnter *.l let b:fswitchdst = 'y' | let b:fswitchlocs = '../inc'
+au! BufEnter *.y let b:fswitchdst = 'l' | let b:fswitchlocs = '../inc'
