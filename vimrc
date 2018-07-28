@@ -12,6 +12,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+Plugin 'alvan/vim-closetag'
 Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Valloric/YouCompleteMe'
@@ -19,7 +20,7 @@ Bundle 'Raimondi/delimitMate'
 
 Bundle 'lervag/vimtex'
 Bundle 'derekwyatt/vim-fswitch'
-Bundle 'powerline/powerline'
+Bundle 'vim-airline/vim-airline'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -36,6 +37,10 @@ filetype plugin indent on    " required
 
 
 "------ End Vundle setup -----------
+
+" Stop delimitMate from matching angle brackets since vim-closetag handles
+" this in html
+au FileType vim,html let b:delimitMate_matchpairs = "(:),[:],{:}"
 
 "------ Powerline Settings -------
 set rtp+=$HOME/.vim/bundle/powerline/powerline/bindings/vim/
@@ -61,8 +66,7 @@ let g:syntastic_check_on_wq = 0
 
 " Hide some latex warnings
 " https://stackoverflow.com/questions/28282315/how-can-i-turn-off-specific-messages-in-syntastic-vim
-let g:syntastic_quiet_messages = {
-  \ 'regex':  '.*You might wish to put this between a pair.*\|You should enclose'}
+let g:syntastic_quiet_messages = {"type": "style", "regex": 'possible unwanted\|Whitespace\|Dots'}
 
 "------ End Syntastic settings
 
@@ -155,8 +159,23 @@ set hlsearch
 " fswitch (switching to header file) mappings
 noremap  <Leader>h :FSHere <CR>
 
+
+" Set .h and .hh as acceptable header formats for .c files
+au! BufEnter *.cc let b:fswitchdst = 'h,hh' | let b:fswitchlocs = '../inc'
+au! BufEnter *.h let b:fswitchdst = 'c,cc,cpp' | let b:fswitchlocs = '../inc'
+
 " use fswitch to switch between flex and bison files
 au! BufEnter *.l let b:fswitchdst = 'y,yy' | let b:fswitchlocs = '../inc'
 au! BufEnter *.ll let b:fswitchdst = 'yy,y' | let b:fswitchlocs = '../inc'
 au! BufEnter *.y let b:fswitchdst = 'l' | let b:fswitchlocs = '../inc'
 au! BufEnter *.yy let b:fswitchdst = 'll,l' | let b:fswitchlocs = '../inc'
+
+" https://stackoverflow.com/questions/2019281/load-different-colorscheme-when-using-vimdiff
+"if &diff
+    "colorscheme evening
+"endif
+
+
+" Wordcount
+let g:airline#extensions#wordcount#enabled = 1
+let g:airline#extensions#wordcount#formatter = 'default'
