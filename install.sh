@@ -35,13 +35,3 @@ echo "Moving old gitconfig from ~ to $olddir"
 mv ~/.gitconfig $olddir/gitconfig
 echo "Creating symlink to .gitconfig in home directory."
 ln -s $dir/gitconfig ~/.gitconfig
-
-echo "Moving old xmonad.hs from ~/.xmonad to $olddir"
-mv ~/.xmonad/xmonad.hs $olddir/xmonad
-echo "Creating symlink to .xmonad/xmonad.hs in home directory"
-ln -s $dir/xmonad.hs ~/.xmonad/xmonad.hs
-
-echo "Moving old compton.conf from ~/.config to $olddir"
-mv ~/.config/compton.conf $olddir/compton.conf
-echo "Creating symlink to .config/compton.conf in home directory"
-ln -s $dir/compton.conf ~/.config/compton.conf
