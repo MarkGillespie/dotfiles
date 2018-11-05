@@ -49,7 +49,7 @@ hi Identifier guifg=#70BDF1 guibg=NONE guisp=NONE gui=NONE ctermfg=117 ctermbg=N
 hi SpecialChar guifg=#FFB539 guibg=NONE guisp=NONE gui=NONE ctermfg=221 ctermbg=NONE cterm=NONE
 hi Conditional guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NONE cterm=NONE
 hi StorageClass guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NONE cterm=NONE
-hi Todo guifg=#FC4NONE guibg=NONE guisp=NONE gui=bold ctermfg=13 ctermbg=NONE cterm=bold
+hi Todo guifg=#F0C040 guibg=NONE guisp=NONE gui=bold ctermfg=13 ctermbg=NONE cterm=bold
 hi Special guifg=#FFB539 guibg=NONE guisp=NONE gui=NONE ctermfg=221 ctermbg=NONE cterm=NONE
 hi LineNr guifg=#696567 guibg=#000000 guisp=#000000 gui=NONE ctermfg=242 ctermbg=NONE cterm=NONE
 hi StatusLine guifg=#696567 guibg=#000000 guisp=#000000 gui=NONE ctermfg=242 ctermbg=NONE cterm=NONE
@@ -77,11 +77,11 @@ hi PreProc guifg=#BF81FA guibg=NONE guisp=NONE gui=NONE ctermfg=177 ctermbg=NONE
 hi Visual guifg=#fff1db guibg=#ff8c00 guisp=#ff8c00 gui=NONE ctermfg=230 ctermbg=208 cterm=NONE
 hi MoreMsg guifg=#FFA500 guibg=NONE guisp=NONE gui=NONE ctermfg=214 ctermbg=NONE cterm=NONE
 hi VertSplit guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NONE cterm=NONE
-hi Exception guifg=#FC4NONE guibg=NONE guisp=NONE gui=NONE ctermfg=13 ctermbg=NONE cterm=NONE
+hi Exception guifg=#F0C040 guibg=NONE guisp=NONE gui=NONE ctermfg=13 ctermbg=NONE cterm=NONE
 hi Keyword guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NONE cterm=NONE
 hi Type guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NONE cterm=NONE
 hi Cursor guifg=NONE guibg=#FFEE68 guisp=#FFEE68 gui=NONE ctermfg=NONE ctermbg=227 cterm=NONE
-hi Error guifg=#FC4NONE guibg=NONE guisp=NONE gui=NONE ctermfg=13 ctermbg=NONE cterm=NONE
+hi Error guifg=#F0C040 guibg=NONE guisp=NONE gui=NONE ctermfg=13 ctermbg=NONE cterm=NONE
 hi PMenu guifg=#f09000 guibg=#404040 guisp=#404040 gui=NONE ctermfg=208 ctermbg=238 cterm=NONE
 hi SpecialKey guifg=#E783E9 guibg=NONE guisp=NONE gui=NONE ctermfg=176 ctermbg=NONE cterm=NONE
 hi Constant guifg=#6DF584 guibg=NONE guisp=NONE gui=NONE ctermfg=84 ctermbg=NONE cterm=NONE
@@ -93,7 +93,7 @@ hi Repeat guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NONE 
 hi Directory guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NONE cterm=NONE
 hi Structure guifg=#FFEE68 guibg=NONE guisp=NONE gui=NONE ctermfg=227 ctermbg=NONE cterm=NONE
 hi Macro guifg=#BF81FA guibg=NONE guisp=NONE gui=NONE ctermfg=177 ctermbg=NONE cterm=NONE
-hi Underlined guifg=#FC4NONE guibg=NONE guisp=NONE gui=underline ctermfg=13 ctermbg=NONE cterm=underline
+hi Underlined guifg=#F0C040 guibg=NONE guisp=NONE gui=underline ctermfg=13 ctermbg=NONE cterm=underline
 hi TabLine guifg=NONE guibg=#141414 guisp=#141414 gui=NONE ctermfg=242 ctermbg=233 cterm=NONE
 hi cursorim guifg=NONE guibg=#FFEE68 guisp=#FFEE68 gui=NONE ctermfg=NONE ctermbg=227 cterm=NONE
 hi htmlitalic guifg=#D0D0D0 guibg=NONE guisp=NONE gui=italic ctermfg=252 ctermbg=NONE cterm=NONE
