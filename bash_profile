@@ -1,7 +1,7 @@
 alias school='cd ~/Box/CMU/2018-2019/Spring'
 alias uniform='cd ~/Box/CMU/Uniformization'
 alias unif='uniform'
-alias blog='cd ~/Box/Webdev/MathBlog/'
+alias blog='cd ~/Dropbox/Webdev/MathBlog/'
 alias ddg='cd ~/Box/CMU/DDGClass'
 alias notes='cd ~/Box/CMU/DDGClass/ddg-notes'
 alias knit='cd ~/Box/knit/textiles-lab'
