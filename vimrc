@@ -63,16 +63,21 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_python_python_exec = '/usr/local/bin/python3'
 
 " Hide some latex warnings
 " https://stackoverflow.com/questions/28282315/how-can-i-turn-off-specific-messages-in-syntastic-vim
-let g:syntastic_quiet_messages = {"type": "style", "regex": 'possible unwanted\|Whitespace\|Dots'}
+let g:syntastic_quiet_messages = {"type": "style", "regex": 'possible unwanted\|Whitespace\|Dots\|proprietary\|summary\|details'}
 
 "------ End Syntastic settings
 
 "------ VimTeX settings -------
 " https://github.com/lervag/vimtex/issues/467
 let g:vimtex_compiler_latexmk = {
+    \ 'backend': 'jobs',
+    \ 'callback' : 1,
+    \ 'continuous' : 1,
+    \ 'executable' : 'latexmk',
     \ 'options' : [
     \   '-pdf',
     \   '-shell-escape',
@@ -82,6 +87,7 @@ let g:vimtex_compiler_latexmk = {
     \   '-interaction=nonstopmode',
     \ ],
     \}
+let g:vimtex_view_general_viewer  = '/Applications/TeX/TeXShop.app/Contents/MacOS/TeXShop'
 "------ End VimTeX settings
 
 " Do syntax highlighting
@@ -142,11 +148,11 @@ highlight ColorColumn ctermbg=Black
 autocmd FileType ocaml let &colorcolumn=join(range(81,999),",")
 autocmd FileType c let &colorcolumn=join(range(81,999),",")
 autocmd FileType cpp let &colorcolumn=join(range(81,999),",")
-autocmd FileType text let &colorcolumn=join(range(81,999),",")
+"autocmd FileType text let &colorcolumn=join(range(81,999),",")
 
 set expandtab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 
 " indent wrapped lines
 set breakindent

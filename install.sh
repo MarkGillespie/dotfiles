@@ -26,6 +26,11 @@ mv ~/.vimrc ~/dotfiles_old/vimrc
 echo "Creating symlink to .vimrc in home directory."
 ln -s $dir/vimrc ~/.vimrc
 
+echo "Moving old bash_profile from ~ to $olddir"
+mv ~/.bash_profile ~/dotfiles_old/bash_profile
+echo "Creating symlink to .bash_profile in home directory."
+ln -s $dir/bash_profile ~/.bash_profile
+
 echo "Moving old mark_herald (color scheme) from ~/.vim/colors to $olddir"
 mv ~/.vim/colors/mark_herald.vim $olddir/mark_herald.vim
 echo "Creating symlink to mark_herald.vim in ~/.vim/colors"
