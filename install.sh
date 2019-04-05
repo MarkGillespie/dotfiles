@@ -26,6 +26,11 @@ mv ~/.vimrc ~/dotfiles_old/vimrc
 echo "Creating symlink to .vimrc in home directory."
 ln -s $dir/vimrc ~/.vimrc
 
+echo "Moving old spacemacs from ~ to $olddir"
+mv ~/.spacemacs ~/dotfiles_old/spacemacs
+echo "Creating symlink to .spacemacs in home directory."
+ln -s $dir/spacemacs ~/.spacemacs
+
 echo "Moving old bash_profile from ~ to $olddir"
 mv ~/.bash_profile ~/dotfiles_old/bash_profile
 echo "Creating symlink to .bash_profile in home directory."
