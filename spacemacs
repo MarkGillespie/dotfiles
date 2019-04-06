@@ -325,6 +325,8 @@ you should place your code here."
 
   (spacemacs/toggle-transparency)
 
+  (global-set-key "S-h" 'next-buffer)
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

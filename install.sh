@@ -31,6 +31,11 @@ mv ~/.spacemacs ~/dotfiles_old/spacemacs
 echo "Creating symlink to .spacemacs in home directory."
 ln -s $dir/spacemacs ~/.spacemacs
 
+echo "Moving old karabiner.json from ~ to $olddir"
+mv ~/.config/karabiner/karabiner.json ~/dotfiles_old/karabiner
+echo "Creating symlink to karabiner.json in karabiner directory."
+ln -s $dir/karabiner ~/.config/karabiner/karabiner.json
+
 echo "Moving old bash_profile from ~ to $olddir"
 mv ~/.bash_profile ~/dotfiles_old/bash_profile
 echo "Creating symlink to .bash_profile in home directory."
@@ -45,3 +50,5 @@ echo "Moving old gitconfig from ~ to $olddir"
 mv ~/.gitconfig $olddir/gitconfig
 echo "Creating symlink to .gitconfig in home directory."
 ln -s $dir/gitconfig ~/.gitconfig
+
+
