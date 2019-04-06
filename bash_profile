@@ -4,7 +4,7 @@ alias unif='uniform'
 alias blog='cd ~/Dropbox/Webdev/MathBlog/'
 alias ddg='cd ~/Box/CMU/DDGClass'
 alias notes='cd ~/Box/CMU/DDGClass/ddg-notes'
-alias knit='cd ~/Box/knit/textiles-lab'
+alias knit='cd ~/Box/knit/textiles-lab/textiles-code/knitting'
 alias weave='cd ~/Box/CMU/2018-2019/Spring/textiles/weave'
 
 #export DISPLAY=:0
