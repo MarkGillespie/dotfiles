@@ -154,6 +154,14 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 
+if has("autocmd")
+
+    " If the filetype is Makefile then we need to use tabs
+    " So do not expand tabs into space.
+    autocmd FileType make   set noexpandtab
+
+endif
+
 " indent wrapped lines
 set breakindent
 
