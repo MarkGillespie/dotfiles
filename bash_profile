@@ -6,9 +6,11 @@ alias ddg='cd ~/Box/CMU/DDGClass'
 alias notes='cd ~/Box/CMU/DDGClass/ddg-notes'
 alias knit='cd ~/Box/knit/textiles-lab/textiles-code/knitting'
 alias weave='cd ~/Box/CMU/2018-2019/Spring/textiles/weave'
+alias flow='cd ~/Dropbox/Code/EigenvalueFlow'
 
 #export DISPLAY=:0
-alias vim='/usr/local/bin/vim'
+#alias vim='/usr/local/bin/vim --servername whatever'
+alias vim='mvim -v'
 alias oni='/Applications/Oni.app/Contents/MacOS/Oni'
 
 PS1="\w \u$ "

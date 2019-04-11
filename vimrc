@@ -144,10 +144,10 @@ autocmd! BufNewFile,BufRead *.tex set syntax=plaintex
 
 
 " set 80 column color
-highlight ColorColumn ctermbg=Black
-autocmd FileType ocaml let &colorcolumn=join(range(81,999),",")
-autocmd FileType c let &colorcolumn=join(range(81,999),",")
-autocmd FileType cpp let &colorcolumn=join(range(81,999),",")
+"highlight ColorColumn ctermbg=Black
+"autocmd FileType ocaml let &colorcolumn=join(range(81,999),",")
+"autocmd FileType c let &colorcolumn=join(range(81,999),",")
+"autocmd FileType cpp let &colorcolumn=join(range(81,999),",")
 "autocmd FileType text let &colorcolumn=join(range(81,999),",")
 
 set expandtab
