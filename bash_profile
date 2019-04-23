@@ -17,7 +17,7 @@ PS1="\w \u$ "
 
 # https://www.cnet.com/news/tip-set-the-terminal-to-store-only-unique-commands-in-the-history/
 # ignore duplicate commands in history
-export HISTCONTROL=ignoredupds
+HISTCONTROL=ignoredupds
 
 # Initialize Houdini Environment
 cd '/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/'
