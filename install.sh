@@ -51,4 +51,7 @@ mv ~/.gitconfig $olddir/gitconfig
 echo "Creating symlink to .gitconfig in home directory."
 ln -s $dir/gitconfig ~/.gitconfig
 
-
+echo "Moving old config.fish from ~/.config/fish/ to $olddir"
+mv ~/.config/fish/config.fish $olddir/config.fish
+echo "Creating symlink to config.fish in ~/.config/fish."
+ln -s $dir/config.fish ~/.config/fish/config.fish
