@@ -20,6 +20,4 @@ PS1="\w \u$ "
 HISTCONTROL=ignoredupds
 
 # Initialize Houdini Environment
-cd '/Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/'
-source houdini_setup
-cd ~
+alias hou='cd /Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/ && source houdini_setup && cd ~'
