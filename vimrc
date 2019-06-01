@@ -17,6 +17,7 @@ Bundle 'scrooloose/syntastic'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'Raimondi/delimitMate'
+Plugin 'dag/vim-fish'
 
 Bundle 'lervag/vimtex'
 Bundle 'derekwyatt/vim-fswitch'

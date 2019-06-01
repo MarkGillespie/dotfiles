@@ -17,3 +17,6 @@ function hou
     cd /Applications/Houdini/Current/Frameworks/Houdini.framework/Versions/Current/Resources/
     exec bash -c "source houdini_setup; cd $loc; exec fish"
 end
+
+set PATH /usr/local/opt/coreutils/libexec/gnubin:$PATH
+set PATH /usr/local/opt/gnu-sed/libexec/gnubin:$PATH
