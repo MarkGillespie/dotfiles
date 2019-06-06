@@ -19,12 +19,7 @@
                             {
                                 "description": "Change caps_lock to control when used as modifier, escape when used alone",
                                 "from": {
-                                    "key_code": "caps_lock",
-                                    "modifiers": {
-                                        "optional": [
-                                            "any"
-                                        ]
-                                    }
+                                    "key_code": "caps_lock"
                                 },
                                 "to": [
                                     {
@@ -33,38 +28,10 @@
                                 ],
                                 "to_if_alone": [
                                     {
-                                        "key_code": "escape",
-                                        "modifiers": {
-                                            "optional": [
-                                                "any"
-                                            ]
-                                        }
+                                        "key_code": "escape"
                                     }
                                 ],
                                 "type": "basic"
-                            }
-                        ]
-                    },
-                    {
-                        "manipulators": [
-                            {
-                               "description": "Open a terminal with opt+ctrl+t",
-                               "from": {
-                                   "key_code": "t",
-                                   "modifiers": {
-                                        "mandatory": [
-                                            "left_control",
-                                            "left_option"
-                                        ]
-                                   }
-
-                               },
-                               "to": [
-                                   {
-                                       "shell_command": "open -aterminal"
-                                   }
-                               ],
-                               "type": "basic"
                             }
                         ]
                     }
