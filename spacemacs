@@ -30,13 +30,19 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(javascript
+     python
      html
      ;;javascript
      (c-c++ :variables
             c-c++-backend 'rtags
             c-c++-enable-clang-support 't
             c-c++-enable-clang-format-on-save 't)
+     (cmake :variables
+            cmake-enable-cmake-ide-support 't)
+     (shell :variables
+            shell-default-shell 'ansi-term
+            shell-default-term-shell "/bin/bash")
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -47,7 +53,8 @@ values."
      better-defaults
      emacs-lisp
      git
-     latex
+     (latex :variables
+            latex-build-command "LaTeX")
      ;; markdown
      ;; org
      ;; (shell :variables
@@ -62,7 +69,7 @@ values."
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(flycheck-clang-tidy)
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
    ;; A list of packages that will not be installed and loaded.
@@ -303,12 +310,11 @@ values."
    ))
 
 (defun dotspacemacs/user-init ()
-  "Initialization function for user code.
-It is called immediately after `dotspacemacs/init', before layer configuration
-executes.
- This function is mostly useful for variables that need to be set
-before packages are loaded. If you are unsure, you should try in setting them in
-`dotspacemacs/user-config' first."
+  "Initialization for user code:
+This function is called immediately after `dotspacemacs/init', before layer
+configuration.
+It is mostly for variables that should be set before packages are loaded.
+If you are unsure, try setting them in `dotspacemacs/user-config' first."
   )
 
 (defun dotspacemacs/user-config ()
@@ -320,11 +326,45 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
 
   ;; Reload with SPC f e R
+  ;; C-h k key-sequence tells me what function key-sequence calls
+
+  ;; Rtags
+  (setq tags-table-list
+        '("~/.emacs.d" "/usr/local/lib/emacs/src" "~/.cache/rtags"))
+
+  ;; Autosave on focus out
+  ;; https://github.com/syl20bnr/spacemacs/issues/2376
+  ;; see: http://batsov.com/articles/2012/03/08/emacs-tip-number-5-save-buffers-automatically-on-buffer-or-window-switch/
+  (defadvice switch-to-buffer (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice other-window (before other-window-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-1 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-2 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-3 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-4 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-5 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-6 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-7 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-8 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+  (defadvice winum-select-window-9 (before save-buffer-now activate)
+    (when buffer-file-name (save-buffer)))
+
 
   ;; Latex:
   ;; Open with TeXShop
   (setq TeX-view-program-list '(("TeXShop" "/Applications/TeX/TeXShop.app/Contents/MacOS/TeXShop %o")))
+
   (setq TeX-view-program-selection '((output-pdf "TeXShop")))
+
   ;; Compile on save
   (defun latex-save-build-hook()
     (when (eq major-mode 'latex-mode)
@@ -340,10 +380,8 @@ you should place your code here."
   (custom-set-variables
    '(flycheck-c/c++-googlelint-executable "/usr/local/bin/cpplint"))
 
-  ;;(add-hook 'c-mode-common-hook
-  ;;          (function (lambda ()
-  ;;                      (add-hook 'before-save-hook
-  ;;                                'clang-format-buffer))))
+  (eval-after-load 'flycheck
+    '(add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
 
   ;; Make search case sensitive
   ;; https://emacs.stackexchange.com/questions/30570/how-do-i-do-case-sensitive-searches-using-evil-spacemacs
@@ -382,7 +420,7 @@ This function is called at the very end of Spacemacs initialization."
  '(flycheck-c/c++-googlelint-executable "/usr/local/bin/cpplint")
  '(package-selected-packages
    (quote
-    (evil-string-inflection ivy google-c-style lsp-mode ht helm-rtags flycheck-rtags company-rtags rtags disaster company-c-headers cmake-mode clang-format flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode unfill smeargle orgit mwim magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy evil-magit magit transient git-commit with-editor company-statistics company-auctex company auto-yasnippet yasnippet auctex ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (evil-string-inflection evil-commentary ivy google-c-style lsp-mode ht helm-rtags flycheck-rtags company-rtags rtags disaster company-c-headers cmake-mode clang-format flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode unfill smeargle orgit mwim magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy evil-magit magit transient git-commit with-editor company-statistics company-auctex company auto-yasnippet yasnippet auctex ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

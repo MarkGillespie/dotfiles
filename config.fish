@@ -22,3 +22,15 @@ set PATH /usr/local/opt/coreutils/libexec/gnubin:$PATH
 set PATH /usr/local/opt/gnu-sed/libexec/gnubin:$PATH
 
 set PATH /usr/local/opt/llvm/bin:$PATH
+set PATH /Applications/meshlab.app/Contents/MacOS:$PATH
+
+
+# emacs ansi-term support
+if test -n "$EMACS"
+  set -x TERM eterm-color
+end
+
+# this function may be required
+function fish_title
+  true
+end
