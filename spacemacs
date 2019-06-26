@@ -359,6 +359,12 @@ you should place your code here."
     (when buffer-file-name (save-buffer)))
 
 
+  (setq-default dotspacemacs-configuration-layers '(
+                                                    (python :variables python-enable-yapf-format-on-save t)))
+
+  ;; https://github.com/syl20bnr/spacemacs/issues/8159
+  (add-hook 'python-mode-hook 'yapf-mode)
+
   ;; Latex:
   ;; Open with TeXShop
   (setq TeX-view-program-list '(("TeXShop" "/Applications/TeX/TeXShop.app/Contents/MacOS/TeXShop %o")))
