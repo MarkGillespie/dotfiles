@@ -17,9 +17,9 @@
                     {
                         "manipulators": [
                             {
-                                "description": "Change caps_lock to control when used as modifier, escape when used alone",
+                                "description": "Change caps_lock (already mapped to control) to control when used as modifier, escape when used alone",
                                 "from": {
-                                    "key_code": "caps_lock"
+                                    "key_code": "left_control"
                                 },
                                 "to": [
                                     {

@@ -30,7 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
+   '(markdown
+     javascript
      python
      html
      ;;javascript
@@ -370,6 +371,14 @@ you should place your code here."
     (when (eq major-mode 'latex-mode)
       (latex/build)))
   (add-hook 'after-save-hook 'latex-save-build-hook)
+
+  ;; Turn of line wrapping
+  ;; https://emacs.stackexchange.com/questions/42285/how-to-disable-line-wrapping-in-latex-layer
+  (add-hook 'latex-mode-hook #'spacemacs/toggle-auto-fill-mode-off)
+
+  ;; Maybe this will turn it off
+  (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
+  (spacemacs/toggle-auto-fill-mode-off)
 
   ;;(spacemacs/toggle-transparency)
 

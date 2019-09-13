@@ -1,4 +1,4 @@
-alias school 'cd ~/Box/CMU/2018-2019/Spring'
+alias school 'cd ~/Dropbox/CMU/'
 alias uniform 'cd ~/Box/CMU/Uniformization'
 alias unif 'uniform'
 alias blog 'cd ~/Dropbox/Webdev/MathBlog/'
