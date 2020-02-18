@@ -39,8 +39,8 @@ values."
             c-c++-enable-clang-support 't
             c-c++-enable-clang-format-on-save 't)
      ;; c-c++-backend 'rtags
-     ;; (cmake :variables
-     ;;        cmake-enable-cmake-ide-support 't)
+     (cmake :variables
+            cmake-enable-cmake-ide-support 't)
      (shell :variables
             shell-default-shell 'ansi-term
             shell-default-term-shell "/bin/bash")
