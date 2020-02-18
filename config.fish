@@ -20,9 +20,11 @@ end
 
 set PATH /usr/local/opt/coreutils/libexec/gnubin:$PATH
 set PATH /usr/local/opt/gnu-sed/libexec/gnubin:$PATH
+set PATH /usr/local/Cellar/tidy-html5/5.6.0/bin:$PATH
 
 set PATH /usr/local/opt/llvm/bin:$PATH
 set PATH /Applications/meshlab.app/Contents/MacOS:$PATH
+set PATH /Users/mgillesp/.local/bin:$PATH
 
 
 # emacs ansi-term support
