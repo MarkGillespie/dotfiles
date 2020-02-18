@@ -382,7 +382,9 @@ you should place your code here."
 
   ;;(spacemacs/toggle-transparency)
 
-  (add-to-list 'auto-mode-alist '("\\.ipp\\'" . c++=mode))
+  (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.cu$" . c++-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.cuh$" . c++-mode) auto-mode-alist))
 
   (use-package evil-string-inflection :ensure t)
 
