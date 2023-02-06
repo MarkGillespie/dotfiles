@@ -30,11 +30,27 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(markdown
+   '(yaml
+     shell-scripts
+     php
+     csv
+     rust
+     markdown
      javascript
+     java
      python
-     html
+     (html :variables
+           web-fmt-on-save 't
+           web-fmt-tool 'prettier)
      ;;javascript
+     (javascript :variables
+                 javascript-fmt-on-save 't
+                 javascript-fmt-tool 'prettier
+                 )
+     ;;java
+     (java :variables
+                 java-backend 'lsp
+                 )
      (c-c++ :variables
             c-c++-enable-clang-support 't
             c-c++-enable-clang-format-on-save 't)
@@ -44,6 +60,7 @@ values."
      cmake
      (shell :variables
             shell-default-shell 'ansi-term
+            shell-default-position 'left
             shell-default-term-shell "/bin/bash")
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -55,8 +72,10 @@ values."
      better-defaults
      emacs-lisp
      git
-     (latex :variables
-            latex-build-command "LaTeX")
+     latex
+     ;; (latex :variables
+     ;;        latex-build-command "LaTeX"
+     ;;        latex-run-command "pdflatex")
      ;; markdown
      ;; org
      ;; (shell :variables
@@ -65,6 +84,8 @@ values."
      spell-checking
      syntax-checking
      evil-commentary
+     lean 
+     themes-megapack
      ;; version-control
      )
    ;; List of additional packages that will be installed without being
@@ -374,24 +395,35 @@ you should place your code here."
   (setq TeX-view-program-selection '((output-pdf "TeXShop")))
 
   ;; Compile on save
-  (defun latex-save-build-hook()
-    (when (eq major-mode 'latex-mode)
-      (latex/build)))
-  (add-hook 'after-save-hook 'latex-save-build-hook)
+  ;; (defun latex-save-build-hook()
+  ;;   (when (eq major-mode 'latex-mode)
+  ;;     (latex/build)))
+  ;; (add-hook 'after-save-hook 'latex-save-build-hook)
 
-  ;; Turn of line wrapping
+
+  ;; Turn off line wrapping
   ;; https://emacs.stackexchange.com/questions/42285/how-to-disable-line-wrapping-in-latex-layer
-  (add-hook 'latex-mode-hook #'spacemacs/toggle-auto-fill-mode-off)
+  (add-hook 'LaTeX-mode-hook #'spacemacs/toggle-auto-fill-mode-off)
+
 
   ;; Maybe this will turn it off
-  (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
-  (spacemacs/toggle-auto-fill-mode-off)
+  (add-hook 'LaTeX-mode-hook #'visual-line-mode)
+  (add-hook 'LaTeX-mode-hook #'toggle-auto-fill-mode-off)
+  ;; (add-hook 'hack-local-variables-hook (lambda () (setq truncate-lines t)))
+  ;; (spacemacs/toggle-auto-fill-mode-off)
+
+  ;; ;; Nicer word wrapping (don't break in the middle of words)
+  ;; ;; https://emacs.stackexchange.com/questions/33360/how-to-open-org-files-with-visual-line-mode-automatically-turned-on
+  ;; (add-hook 'latex-mode-hook #'visual-line-mode)
 
   ;;(spacemacs/toggle-transparency)
 
   (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
   (setq auto-mode-alist (cons '("\\.cu$" . c++-mode) auto-mode-alist))
   (setq auto-mode-alist (cons '("\\.cuh$" . c++-mode) auto-mode-alist))
+
+  (setq auto-mode-alist (cons '("\\.cjs$" . js-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.jsm$" . js-mode) auto-mode-alist))
 
   (use-package evil-string-inflection :ensure t)
 
@@ -435,9 +467,11 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(evil-want-Y-yank-to-eol nil)
+ '(flycheck-c/c++-googlelint-executable "/usr/local/bin/cpplint")
  '(package-selected-packages
    (quote
-    (evil-string-inflection evil-commentary ivy google-c-style lsp-mode ht disaster company-c-headers cmake-mode flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode unfill smeargle orgit mwim magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy evil-magit magit transient git-commit with-editor company-statistics company-auctex company auto-yasnippet yasnippet auctex ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
+    (eldoc evil-string-inflection yapfify xterm-color shell-pop pyvenv pytest pyenv-mode py-isort pip-requirements multi-term mmm-mode markdown-toc markdown-mode live-py-mode hy-mode helm-pydoc gh-md flycheck-clang-tidy eshell-z eshell-prompt-extras esh-help cython-mode company-anaconda anaconda-mode pythonic evil-commentary ivy google-c-style lsp-mode ht disaster company-c-headers cmake-mode clang-format flyspell-correct-helm flyspell-correct flycheck-pos-tip pos-tip flycheck auto-dictionary web-mode tagedit slim-mode scss-mode sass-mode pug-mode helm-css-scss haml-mode emmet-mode company-web web-completion-data web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode unfill smeargle orgit mwim magit-gitflow magit-popup helm-gitignore helm-company helm-c-yasnippet gitignore-mode gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link fuzzy evil-magit magit transient git-commit with-editor company-statistics company-auctex company auto-yasnippet yasnippet auctex ac-ispell auto-complete ws-butler winum which-key volatile-highlights vi-tilde-fringe uuidgen use-package toc-org spaceline powerline restart-emacs request rainbow-delimiters popwin persp-mode pcre2el paradox spinner org-plus-contrib org-bullets open-junk-file neotree move-text macrostep lorem-ipsum linum-relative link-hint indent-guide hydra lv hungry-delete hl-todo highlight-parentheses highlight-numbers parent-mode highlight-indentation helm-themes helm-swoop helm-projectile projectile pkg-info epl helm-mode-manager helm-make helm-flx helm-descbinds helm-ag google-translate golden-ratio flx-ido flx fill-column-indicator fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist highlight evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state smartparens evil-indent-plus evil-iedit-state iedit evil-exchange evil-escape evil-ediff evil-args evil-anzu anzu evil goto-chg undo-tree eval-sexp-fu elisp-slime-nav dumb-jump f dash s diminish define-word column-enforce-mode clean-aindent-mode bind-map bind-key auto-highlight-symbol auto-compile packed aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line helm avy helm-core popup async))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
