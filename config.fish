@@ -25,6 +25,7 @@ set PATH /usr/local/Cellar/tidy-html5/5.6.0/bin:$PATH
 set PATH /usr/local/opt/llvm/bin:$PATH
 set PATH /Applications/meshlab.app/Contents/MacOS:$PATH
 set PATH /Users/mgillesp/.local/bin:$PATH
+set PATH /Users/markgillespie/miniconda3/bin:$PATH
 
 
 # emacs ansi-term support
