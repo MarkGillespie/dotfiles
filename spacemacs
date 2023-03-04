@@ -469,6 +469,15 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
+  ;; additional c++-style file endings
+  (setq auto-mode-alist (cons '("\\.ipp$" . c++-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.cu$" . c++-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.cuh$" . c++-mode) auto-mode-alist))
+
+  ;; additional js-style file endings
+  (setq auto-mode-alist (cons '("\\.cjs$" . js-mode) auto-mode-alist))
+  (setq auto-mode-alist (cons '("\\.jsm$" . js-mode) auto-mode-alist))
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
